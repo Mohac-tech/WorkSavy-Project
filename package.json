@@ -1,0 +1,19 @@
+{
+  "name": "worksavy",
+  "version": "1.0.0",
+  "description": "Business web app ",
+  "main": "index.js",
+  "scripts": {
+    "refresh": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mohamed Cisse And Doro Jacques Soromou",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "express": "^4.18.2",
+    "mongodb": "^4.12.1",
+    "mongoose": "^6.8.0",
+    "nodemon": "^2.0.20"
+  }
+}
