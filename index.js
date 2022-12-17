@@ -5,12 +5,26 @@ const Loc = require('./models/Localisation');
 const Role = require('./models/Role');
 const Emp = require('./models/Employee');
 const Dept = require('./models/Departement');
+const Users = require('./models/Users');
+const bcrypt = require('bcrypt');
+
+require('dotenv').config();
+
+const usersRoutes = require("./routes/users");
+const roleRoutes = require("./routes/role");
+const localisationRoutes = require("./routes/localisation");
+const employeeRoutes = require("./routes/employees");
+const departmentRoutes = require("./routes/departments");
 
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+app.use(express.json());
 
-mongoose.connect('mongodb://127.0.0.1:27017/WorkSavy_DB', { useNewUrlParser: true}, () => console.log('Connected'));
+const api = process.env.API_URL;
 
+mongoose.connect(process.env.CONNECTION_STRING, { useNewUrlParser: true }, () => console.log('Connected'));
+
+app.use(`${api}/users`, usersRoutes);
 /* 
 app.post('/create/employee', async (req,res) => {
 
@@ -36,19 +50,9 @@ app.post('/create/employee', async (req,res) => {
 })
 */
 
-app.post('/login', async (req,res) => {
+//logout clear token
 
-    const username = req.body.username;
-    const password = req.body.password;
-
-    if(Emp.findOne({'email': username})){}
-    else{return console.log('Doesnt exist')}
-    if(Emp.findOne({'password': password})){}
-    else{return console.log('Reinitiliser mot de passe')}
-
-})
-
-app.listen(3000, ()=>{
+app.listen(3000, () => {
     console.log('Le serveur a demarré')
 })
 

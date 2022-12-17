@@ -2,18 +2,43 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const schemaEmp = new Schema({
-    fistName: String,
-    lastName: String,
+    fistName: {
+        type: String,
+        required: true   
+    },
+    lastName:{
+        type: String,
+        required: true   
+    },
     email: { 
             type: String,
             required: true,
             unique: true
         },
-    role: String,
-    sin: Number,
-    dob: String,
-   /*  localisation: {
+    role: {
+        type: String,
+        required: true   
+    },
+    sin: {
+        type: String,
+        required: true   
+    },
+    dob: {
+        type: String,
+        required: true   
+    },
+    phoneNumber: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    image:{ 
+        type: String,
+        Default: ''
+    },
+  /*   localisation: {
         type: mongoose.types.ObjectId,
+        default: '',
         ref: 'Localisation'             
     },
     department: {
