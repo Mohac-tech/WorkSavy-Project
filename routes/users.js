@@ -117,7 +117,8 @@ router.post("/resetPassword", async (req, res) => {
           return res.sendStatus(401).json({ message: "Veuillez reessayer" })
       }
    } catch (err) {
-      res.json({ message: err.message() });
+      console.log(err);
+		res.status(500).json({ error: true, message: "Internal Server Error" });
    }
    })
 
