@@ -1,3 +1,4 @@
+import auth from "../middleware/auth.js"
 const express = require("express");
 const router = express.Router();
 const { User } = require("../models/Users");
@@ -44,8 +45,8 @@ router.get("/login", async (req, res) => {
       const password = req.body.password;
       const user = await User.find({ email: username });
 
-      if (user == null) {
-         return res.sendStatus(401);
+      if (!user) {
+         return res.status(401).json({ error: true, message: "Invalid email or password" });
       }
       const comp = await bcrypt.compare(user.passwordHash, password)
       if (!comp ) {
@@ -57,30 +58,18 @@ router.get("/login", async (req, res) => {
 
          User.findOneAndUpadate(user._id, { tokens: [{token: at, signAt: Date.now().toString()}] } )
 
-         return res.sendStatus(200).json({at: at, rt: rt});
+         return res.status(200).json({
+            error:false,
+            at: at, 
+            rt: rt,
+            message: "Logged in successfully"
+         })
 
    } catch (err) {
-      res.json({ message: err.message() });
+      res.status(500).json({ error: true, message: "Internal Server Error" });
    }
 
 });
-
-const authenticate = (req,res,next) => {
-       const autHeader = req.headers['autorization'];
-       const token = autHeader && autHeader.split(' ')[1];
-
-       if(token == null){
-         return res.sendStatus(401)
-       }
-
-       jwt.verify(token, process.env.ACCES_TOKEN, (err,user) => {
-         if(err){
-            return res.sendStatus(401)
-         } 
-         req.user = user
-         next()
-       })
-}
 
 router.get("/refreshToken", async (req, res) => {
 
@@ -95,15 +84,15 @@ router.get("/refreshToken", async (req, res) => {
          return res.sendStatus(401)
       }
 
-      delete iat;
-      delete exp;
+      delete user.iat;
+      delete user.exp;
       const at = await accesToken(user);
       return res.sendStatus(200).json({at: at});
-})
+   })
 })
 
 
-router.delete("/login", authenticate, async (req, res) => {
+router.delete("/login", async (req, res) => {
    const autHeader = req.headers['autorization'];
    const token = autHeader && autHeader.split(' ')[1];
 
