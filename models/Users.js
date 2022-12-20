@@ -19,15 +19,18 @@ const schemaUser = new Schema({
         required: true
     },
     dob: String,
-    /*   localisation: {
-          type: mongoose.types.ObjectId,
+    localisation: {
+          type: mongoose.Types.ObjectId,
           ref: 'Localisation'             
       },
-      department: {
-          type: mongoose.types.ObjectId,
+    department: {
+          type: mongoose.Types.ObjectId,
           ref: 'Dept' 
-      }
-      */
+      },
+     tokens: {
+        type: Object,
+        Default: ''
+    }
 })
 
 module.exports = mongoose.model('User', schemaUser);

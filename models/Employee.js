@@ -15,9 +15,10 @@ const schemaEmp = new Schema({
             required: true,
             unique: true
         },
-    role: {
-        type: String,
-        required: true   
+    role:  {
+        type: mongoose.Types.ObjectId,
+        ref: "Role",
+        Default: '',             
     },
     sin: {
         type: String,
@@ -36,16 +37,16 @@ const schemaEmp = new Schema({
         type: String,
         Default: ''
     },
-  /*   localisation: {
-        type: mongoose.types.ObjectId,
+     localisation: {
+        type: mongoose.Types.ObjectId,
         default: '',
         ref: 'Localisation'             
     },
     department: {
-        type: mongoose.types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: 'Dept' 
     }
-    */
+     
 })
 
 module.exports = mongoose.model('Emp', schemaEmp);

@@ -3,11 +3,15 @@ const router = express.Router();
 const { User } = require("../models/Users");
 const jwt = require("jsonwebtoken")
 
+const bodyParser = require('body-parser');
+router.use(bodyParser.json());
+router.use(express.json());
+
 router.get("/", async (req, res) => {
    await res.sendStatus(200).json({ success: false });
 });
 
-router.post("/create", async (req, res) => {
+router.post("/register", async (req, res) => {
    const salt = await bcrypt.genSalt();
    const hashPassword = await bcrypt.hash(req.body.password, salt);
 
@@ -18,10 +22,11 @@ router.post("/create", async (req, res) => {
       //  image:le: String,
       passwordHash: hashPassword,
       dob: req.body.dob,
-      localisation: Users.findOne({ name: req.body.localisation }).ObjectId,
+      localisation: User.findOne({ name: req.body.localisation }).ObjectId,
       department: Dept.findOne({ name: req.body.localisation }).ObjectId,
    });
    try {
+
       await user.save();
       return res.sendStatus(201);
    } catch (err) {
@@ -49,6 +54,9 @@ router.get("/login", async (req, res) => {
 
          const at = accesToken(user);
          const rt = accesRefresh(user);
+
+         User.findOneAndUpadate(user._id, { tokens: [{token: at, signAt: Date.now().toString()}] } )
+
          return res.sendStatus(200).json({at: at, rt: rt});
 
    } catch (err) {
@@ -74,7 +82,7 @@ const authenticate = (req,res,next) => {
        })
 }
 
-router.get("/refreshtoken", async (req, res) => {
+router.get("/refreshToken", async (req, res) => {
 
    const autHeader = req.headers['autorization'];
    const token = autHeader && autHeader.split(' ')[1];
@@ -82,17 +90,31 @@ router.get("/refreshtoken", async (req, res) => {
    if(token == null){
      return res.sendStatus(401)
    }
-   jwt.verify(token, process.env.ACCES_REFRESH_TOKEN, (err,user) => {
+   jwt.verify(token, process.env.ACCES_REFRESH_TOKEN, async (err,user) => {
       if(err){
          return res.sendStatus(401)
       }
 
       delete iat;
       delete exp;
-      const at = accesToken(user);
+      const at = await accesToken(user);
       return res.sendStatus(200).json({at: at});
 })
 })
+
+
+router.delete("/login", authenticate, async (req, res) => {
+   const autHeader = req.headers['autorization'];
+   const token = autHeader && autHeader.split(' ')[1];
+
+   if(token == null){
+     return res.sendStatus(401)
+   }
+
+   const token2 = req.user.tokens['token'];
+   if(token2 === token){await User.findOneAndUpdate(req.user._id,{tokens: ''}) }  
+
+});
 
 router.post("/resetPassword", async (req, res) => {
    try 
