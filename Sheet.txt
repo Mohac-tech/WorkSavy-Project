@@ -1,0 +1,40 @@
+{
+    "firstN": "Mohamed",
+    "lastN": "Cisse",
+    "email": "moha5662@gmail.com",
+    "role": "admin",
+    "sin": "1234567890",
+    "dob": "06 May 1997",
+    "phoneN": "506-888-3677",
+    "image": "link",
+    "localisation": "Moncton",
+    "dept": "Software"
+}
+
+Employee/register
+
+{
+    "firstN": "Junior",
+    "lastN": "Cisse",
+    "email": "jo5662@gmail.com",
+    "role": "user",
+    "sin": "1234567",
+    "dob": "06 May 1990",
+    "phoneN": "506-888-3688",
+    "image": "link",
+    "localisation": "Moncton",
+    "dept": "Data"
+}
+
+      const emp = Emp.findByIdAndUpdate(id, {
+         fistName: req.body.firstN,
+         lastName: req.body.lastN,
+         email: req.body.email,
+         role: r._id,
+         sin: req.body.sin,
+         dob: req.body.dob,
+         phoneNumber: req.body.phoneN,
+         image: req.body.image,
+         localisation: l._id,
+         department: d._id,
+      })

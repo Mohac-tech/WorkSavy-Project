@@ -8,6 +8,7 @@ const  Dept  = require('../models/Departement');
 //const bcrypt = require('bcrypt');
 
 const bodyParser = require('body-parser');
+const Users = require('../models/Users');
 router.use(bodyParser.json());
 router.use(express.json());
 
@@ -41,20 +42,57 @@ router.post("/register", async (req, res) => {
 
 //####### USE SWITCH OR IF TO DERTERMINE THE ELEMENT THE USER WANT TO MODIFY 
 
-// router.patch('/edit/:id', async (req,res) => {
+router.patch('/edit/:id', async (req,res) => {
 
-//     try
-//     {const id = req.params.id;
-//     const toEdit = req.body.toEdit
-//     const edit = req.body.edit
-//     const emp = Emp.find({_id: id}).where(toEdit).equals()
+   const value = req.body.value;
+   const id = req.params.id;
 
-//     Emp.findOneAndUpdate({_id: id},{ $set: { toEdit: edit }})
+   const r = await Role.findOne({ name: req.body.role });
+   const l = await Localisation.findOne({ name: req.body.loc });
+   const d = await Dept.findOne({ name: req.body.dept });
 
-//   }catch(err){
 
-//   }
-// })
+try { 
+
+     switch (value) {
+      case "firstN":
+         await Emp.findByIdAndUpdate(id, { fistName: req.body.firstN });
+         break;
+      case "lastN":
+          await Emp.findByIdAndUpdate(id, { lastName: req.body.lastN });
+         break;
+      case "email":
+         await Emp.findByIdAndUpdate(id, { email: req.body.email });
+         break;
+      case "role":
+          await Emp.findByIdAndUpdate(id, { role: r._id });
+         break;
+      case "sin":
+         await Emp.findByIdAndUpdate(id, { sin: req.body.sin });
+         break;
+      case "dob":
+         await Emp.findByIdAndUpdate(id, { dob: req.body.dob });
+         break;
+      case "phoneN":
+         await Emp.findByIdAndUpdate(id, { phoneNumber: req.body.phoneN });
+         break;
+      case "loc":
+         await Emp.findByIdAndUpdate(id, { localisation: l._id });
+         break;
+      case "image": 
+         await Emp.findByIdAndUpdate(id, { image: req.body.image });
+         break;
+      case "dept":
+         console.log('dept')
+         await Emp.findByIdAndUpdate(id, { department: d._id });
+         break;
+     }    
+          res.sendStatus(201);
+      }catch(err) {
+         console.log('Here')
+         return res.sendStatus(404);
+      }
+})
 
 router.get('/information/:id', async (req,res) => {
 

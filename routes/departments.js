@@ -22,7 +22,7 @@ router.post('/add', async (req,res) => {
    }
 })
 
-router.patch('edit/:id', async (req,res) => {
+router.patch('/edit/:id', async (req,res) => {
 
     try
     {
@@ -36,7 +36,7 @@ router.patch('edit/:id', async (req,res) => {
    }
 })
 
-router.delete('delete/:id', async (req,res) => {
+router.delete('/delete/:id', async (req,res) => {
 
     try
     {
