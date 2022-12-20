@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { User } = require("../models/Users");
+const  User  = require("../models/Users");
 const jwt = require("jsonwebtoken")
 
 const bodyParser = require('body-parser');
@@ -15,7 +15,7 @@ router.post("/register", async (req, res) => {
    const salt = await bcrypt.genSalt();
    const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-   const user = new Users({
+   const user = new User({
       fistName: req.body.firstN,
       lastName: req.body.lastN,
       email: req.body.email,
