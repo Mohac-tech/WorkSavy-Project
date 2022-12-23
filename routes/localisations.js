@@ -16,9 +16,9 @@ router.post('/add', async (req,res) => {
       })
     
       await loc.save();
-      return res.sendStatus(201);
+      return res.status(201).json({ error: false, message: "Succes: Location have been added" });
    } catch (err) {
-      return res.sendStatus(404);
+      return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
 
@@ -29,9 +29,9 @@ router.delete('/delete/:id', async (req,res) => {
       const id = req.params.id 
       const loc = await Localisation.findById(id).remove()
     
-      return res.sendStatus(201).json(loc);
+      return res.status(201).json({ error: false, message: "Succes: Location have been deleted" });
    } catch (err) {
-      return res.sendStatus(404);
+      return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
 
@@ -42,9 +42,9 @@ router.get('/getAll', async (req,res) => {
     const loc = await Localisation.find()
     console.log(loc)
     
-      return res.sendStatus(201);
+    return res.status(201).json({ error: false, message: "Succes: Locations have been Geted" });
    } catch (err) {
-      return res.sendStatus(404);
+      return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
 

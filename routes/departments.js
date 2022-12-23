@@ -16,9 +16,9 @@ router.post('/add', async (req,res) => {
       })
     
       await dept.save();
-      return res.sendStatus(201);
+      return res.status(201).json({ error: false, message: "Succes: Department have been added" });
    } catch (err) {
-      return res.sendStatus(404);
+      return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
 
@@ -30,9 +30,9 @@ router.patch('/edit/:id', async (req,res) => {
     const edit = req.body.name
     const dept = await Dept.findById(id, {name: edit })
     
-      return res.sendStatus(201);
+    return res.status(201).json({ error: false, message: "Succes: Department have been edited" });
    } catch (err) {
-      return res.sendStatus(404);
+      return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
 
@@ -43,9 +43,9 @@ router.delete('/delete/:id', async (req,res) => {
     const id = req.params.id 
     const dept = await Dept.findById(id).remove()
     
-      return res.sendStatus(201).json(dept);
+    return res.status(201).json({ error: false, message: "Succes: Department have been deleted" });
    } catch (err) {
-      return res.sendStatus(404);
+      return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
 
@@ -55,9 +55,9 @@ router.get('/getAll', async (req,res) => {
     {
     const dept = await Dept.find()
     
-      return res.sendStatus(201).json(dept);
+    return res.status(201).json({ error: false, message: "Succes: Department have been geted All" });
    } catch (err) {
-      return res.sendStatus(404);
+      return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
 

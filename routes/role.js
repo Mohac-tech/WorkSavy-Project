@@ -16,9 +16,9 @@ router.post('/add', async (req,res) => {
       })
     
       await role.save();
-      return res.sendStatus(201);
+      return res.status(201).json({ error: false, message: "Succes: Role have been added" });
    } catch (err) {
-      return res.sendStatus(404);
+      return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
 
@@ -29,9 +29,9 @@ router.get('/getRole/:id', async (req,res) => {
       const id = req.params.id 
       const role = await Role.findById(id)
       console.log(role)
-      return res.sendStatus(201)
+      return res.status(201).json({ error: false, message: "Succes: Role have been geted" });
    } catch (err) {
-      return res.sendStatus(404);
+      return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
 
@@ -42,9 +42,9 @@ router.get('/getAll', async (req,res) => {
     const role = await Role.find()
       console.log(role);
     
-      return res.sendStatus(201);
+      return res.status(201).json({ error: false, message: "Succes: Role have been geted All" });
    } catch (err) {
-      return res.sendStatus(404);
+      return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
 

@@ -28,6 +28,7 @@ mongoose.connect(process.env.CONNECTION_STRING, { useNewUrlParser: true }, () =>
 app.use(`${api}/employee`, employeeRoutes);
 app.use(`${api}/role`, roleRoutes);
 app.use(`${api}/localisation`, localisationRoutes);
+app.use(`${api}/users`, usersRoutes);
 /* 
 app.post('/create/employee', async (req,res) => {
 

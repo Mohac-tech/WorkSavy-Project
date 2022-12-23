@@ -38,3 +38,13 @@ Employee/register
          localisation: l._id,
          department: d._id,
       })
+
+{
+    "firstN": "Mohamed",
+    "lastN": "Cisse",
+    "email": "moha5662@gmail.com",
+    "password": "Enfant97",
+    "dob": "06 May 1997",
+    "localisation": "Moncton",
+    "dept": "Software"
+}
