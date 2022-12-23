@@ -2,25 +2,51 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const schemaEmp = new Schema({
-    fistName: String,
-    lastName: String,
+    fistName: {
+        type: String,
+        required: true   
+    },
+    lastName:{
+        type: String,
+        required: true   
+    },
     email: { 
             type: String,
             required: true,
             unique: true
         },
-    role: String,
-    sin: Number,
-    dob: String,
-   /*  localisation: {
-        type: mongoose.types.ObjectId,
+    role:  {
+        type: mongoose.Types.ObjectId,
+        ref: "Role",
+        Default: '',             
+    },
+    sin: {
+        type: String,
+        required: true   
+    },
+    dob: {
+        type: String,
+        required: true   
+    },
+    phoneNumber: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    image:{ 
+        type: String,
+        Default: ''
+    },
+     localisation: {
+        type: mongoose.Types.ObjectId,
+        default: '',
         ref: 'Localisation'             
     },
     department: {
-        type: mongoose.types.ObjectId,
+        type: mongoose.Types.ObjectId,
         ref: 'Dept' 
     }
-    */
+     
 })
 
 module.exports = mongoose.model('Emp', schemaEmp);
