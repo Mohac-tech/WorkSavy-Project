@@ -24,37 +24,12 @@ const api = process.env.API_URL;
 
 mongoose.connect(process.env.CONNECTION_STRING, { useNewUrlParser: true }, () => console.log('Connected'));
 
-//app.use(`${api}/users`, usersRoutes);
 app.use(`${api}/employee`, employeeRoutes);
 app.use(`${api}/role`, roleRoutes);
 app.use(`${api}/localisation`, localisationRoutes);
 app.use(`${api}/users`, usersRoutes);
-/* 
-app.post('/create/employee', async (req,res) => {
 
-    console.log('here')
-    const emp = new Emp({
-        firstName: req.body.firstN,
-        lastName: req.body.lastN,
-        email: req.body.email,
-        role: req.body.role,
-        sin: req.body.sin,
-        dob: req.body.dob,
-     //   localisation: req.body.loc,
-     //   department: req.body.dept
-    })
 
-    try{
-      const saveEmp = await emp.save() 
-      await res.json(saveEmp)
-      console.log(req.body)
-    }catch(err){
-       await res.json({message: err.message})
-    }
-})
-*/
-
-//logout clear token
 
 app.listen(3000, () => {
     console.log('Le serveur a demarré')

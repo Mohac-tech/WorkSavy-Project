@@ -6,6 +6,16 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(express.json());
 
+const logger = require('../logger/logger');
+//const loggerErr = require('../logger/logger-err')
+
+const expressWinston = require('express-winston');
+
+router.use(expressWinston.logger({
+   winstonInstance: logger,
+   statusLevels: true
+}))
+
 router.post('/add', async (req,res) => {
 
     const edit = req.body.edit 
@@ -47,5 +57,7 @@ router.get('/getAll', async (req,res) => {
       return res.status(500).json({ error: true, message: "Internal Servor Error" });
    }
 })
+
+//router.use(expressWinston.errorLogger(loggerErr))
 
 module.exports = router;
