@@ -9,7 +9,8 @@ const  Tokens = require('../models/tokens')
 
 const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
-const auth = require('../middleware/auth')
+const auth = require('../middleware/auth');
+const { logInBodyValidation } = require("../utils/validationSchema");
 
 router.get('/', (req,res) => {
    res.sendStatus(200);
@@ -53,6 +54,12 @@ router.post("/login", async (req, res) => {
    try {
       const username = req.body.username;
       const password = req.body.password;
+      //const error = logInBodyValidation(req.body);
+
+      // if(error){
+      //    return res.status(404).json({ error: true, message: error.details[0].message });
+      // }
+
       const user = await User.findOne({ email: username });
       const user1 = {user}
 
