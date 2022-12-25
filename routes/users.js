@@ -11,21 +11,23 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const auth = require('../middleware/auth')
 
-const bodyParser = require('body-parser');
-router.use(bodyParser.json());
-router.use(express.json());
-
-router.get("/", async (req, res) => {
-   await res.sendStatus(200).json({ success: false });
-});
+router.get('/', (req,res) => {
+   res.sendStatus(200);
+})
 
 router.post("/register", async (req, res) => {
 
-   const l = await Localisation.findOne({ name: req.body.localisation });
-   const d = await Dept.findOne({ name: req.body.dept });
+   const loc = await Localisation.findOne({ name: req.body.localisation });
+   const dept = await Dept.findOne({ name: req.body.dept });
 
    const salt = await bcrypt.genSalt();
    const hashPassword = await bcrypt.hash(req.body.password, salt);
+
+   const email = await User.findOne({ email: req.body.email });
+   
+   if(email){
+      return res.status(403).json({error: true, message: "An user with this email already exist !"});
+   }
 
    const user = new User({
       fistName: req.body.firstN,
@@ -34,8 +36,8 @@ router.post("/register", async (req, res) => {
       image:  req.body.image,
       passwordHash: hashPassword,
       dob: req.body.dob,
-      localisation: l._id,
-      department: d._id,
+      localisation: loc._id,
+      department: dept._id,
    });
    try {
 
@@ -153,5 +155,22 @@ router.post("/resetPassword", async (req, res) => {
 		res.status(500).json({ error: err.message, message: "Internal Server Error" });
    }
    })
+
+//    const myFormat = format.printf( ({level, meta, timestamp}) => {
+//       return `${timestamp} ${level}: ${meta.message}`
+//   })
+  
+//   router.use(expressWinston.errorLogger({
+//       transports: [
+//           new transports.File({
+//               filename: 'logsInternalErrors.log'
+//           })
+//       ],
+//       format: format.combine(
+//           format.json(),
+//           format.timestamp,
+//           //myFormat
+//       )
+//   }))
 
 module.exports = router;

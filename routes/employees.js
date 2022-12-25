@@ -7,33 +7,34 @@ const  Localisation  = require('../models/Localisation');
 const  Dept  = require('../models/Departement');
 //const bcrypt = require('bcrypt');
 
-const bodyParser = require('body-parser');
-const Users = require('../models/Users');
-router.use(bodyParser.json());
-router.use(express.json());
-
-
 router.post("/register", async (req, res) => {
-   const r = await Role.findOne({ name: req.body.role });
-   const l = await Localisation.findOne({ name: req.body.localisation });
-   const d = await Dept.findOne({ name: req.body.dept });
+
+  const email = await Dept.findOne({ name: req.body.email });
+
+  if(email){
+    return res.status(403).json({error: true, message: "An user with this email already exist !"});
+  }
+
+   const role = await Role.findOne({ name: req.body.role });
+   const loc = await Localisation.findOne({ name: req.body.localisation });
+   const dept = await Dept.findOne({ name: req.body.dept });
   
     const user = new Emp({
        fistName: req.body.firstN,
        lastName: req.body.lastN,
        email: req.body.email,
-       role: r._id,
+       role: role._id,
        sin: req.body.sin,
        dob: req.body.dob,
        phoneNumber: req.body.phoneN,
        image: req.body.image,
-       localisation: l._id,
-       department: d._id,
+       localisation: loc._id,
+       department: dept._id,
     });
     try {  
        const u = await user.save();
        console.log(u)
-        return res.status(201).json({ error: false, message: "Emplyee created successfully" });
+        return res.status(201).json({ error: false, message: "Employee created successfully" });
     }catch(err) {
       return res.status(500).json({ error: true, message: "Internal servor error" });
     }  

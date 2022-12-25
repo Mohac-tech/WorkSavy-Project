@@ -2,10 +2,6 @@ const express = require('express');
 const router = express.Router();
 const  Role  = require('../models/Role')
 
-const bodyParser = require('body-parser');
-router.use(bodyParser.json());
-router.use(express.json());
-
 router.post('/add', async (req,res) => {
 
     const edit = req.body.edit 
