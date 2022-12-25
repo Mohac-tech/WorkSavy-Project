@@ -11,10 +11,6 @@ const bcrypt = require('bcrypt');
 const mongoose = require('mongoose');
 const auth = require('../middleware/auth')
 
-const bodyParser = require('body-parser');
-router.use(bodyParser.json());
-router.use(express.json());
-
 router.get('/', (req,res) => {
    res.sendStatus(200);
 })

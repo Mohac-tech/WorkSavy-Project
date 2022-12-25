@@ -7,22 +7,6 @@ const  Localisation  = require('../models/Localisation');
 const  Dept  = require('../models/Departement');
 //const bcrypt = require('bcrypt');
 
-const logger = require('../logger/logger');
-//const loggerErr = require('../logger/logger-err')
-
-const bodyParser = require('body-parser');
-const Users = require('../models/Users');
-router.use(bodyParser.json());
-router.use(express.json());
-
-const expressWinston = require('express-winston');
-
-router.use(expressWinston.logger({
-   winstonInstance: logger,
-   statusLevels: true
-}))
-
-
 router.post("/register", async (req, res) => {
 
   const email = await Dept.findOne({ name: req.body.email });
@@ -125,7 +109,5 @@ router.delete('/delete/:id', async (req,res) => {
        return res.status(500).json({ error: true, message: "Internal Servor Error" });
   }
 })
-
-//router.use(expressWinston.errorLogger(loggerErr))
 
 module.exports = router
