@@ -15,19 +15,7 @@ const bodyParser = require('body-parser');
 router.use(bodyParser.json());
 router.use(express.json());
 
-const logger = require('../logger/logger');
-const { transports, format, level } = require('winston');
-//const loggerErr = require('../logger/logger-err')
-
-const expressWinston = require('express-winston');
-
-router.use(expressWinston.logger({
-   winstonInstance: logger,
-   statusLevels: true
-}))
-
 router.get('/', (req,res) => {
-   logger.warn('test')
    res.sendStatus(200);
 })
 

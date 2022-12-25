@@ -16,13 +16,26 @@ const localisationRoutes = require("./routes/localisations");
 const employeeRoutes = require("./routes/employees");
 const departmentRoutes = require("./routes/departments");
 
+
+const { transports, format, level } = require('winston');
+const expressWinston = require('express-winston');
+const logger = require('./logger/logger');
 const bodyParser = require('body-parser');
+
+//Middlewares
 app.use(bodyParser.json());
 app.use(express.json());
+app.use(expressWinston.logger({
+    winstonInstance: logger,
+    statusLevels: true
+ }))
+
 
 const api = process.env.API_URL;
 
 mongoose.connect(process.env.CONNECTION_STRING, { useNewUrlParser: true }, () => console.log('Connected'));
+
+
 
 app.use(`${api}/employee`, employeeRoutes);
 app.use(`${api}/role`, roleRoutes);
