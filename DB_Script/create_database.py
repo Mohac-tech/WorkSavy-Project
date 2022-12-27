@@ -15,8 +15,8 @@ def createdb(colName, fiName):
     print(file_data)
     collection.insert_many(file_data)
 
-createdb("departments", "depts.json")
-createdb("localisations", "localisations.json")
-createdb("roles", "roles.json")
+createdb("Dept", "depts.json")
+createdb("Localisation", "localisations.json")
+createdb("Role", "roles.json")
 
 
