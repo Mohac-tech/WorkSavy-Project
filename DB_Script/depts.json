@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "639a6f9fadd64123007e532a"
+  },
+  "name": "Telecom"
+},{
+  "_id": {
+    "$oid": "639a6fb4add64123007e532c"
+  },
+  "name": "Software"
+},{
+  "_id": {
+    "$oid": "639a6fbbadd64123007e532e"
+  },
+  "name": "Data"
+}]

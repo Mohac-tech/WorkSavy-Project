@@ -1,0 +1,81 @@
+[{
+  "_id": {
+    "$oid": "639a7341798da2ea1e6d1843"
+  },
+  "name": "Brampton"
+},{
+  "_id": {
+    "$oid": "639a7373798da2ea1e6d1845"
+  },
+  "name": "Halifax"
+},{
+  "_id": {
+    "$oid": "639a737a798da2ea1e6d1847"
+  },
+  "name": "Kanata"
+},{
+  "_id": {
+    "$oid": "639a7392798da2ea1e6d1849"
+  },
+  "name": "Moncton"
+},{
+  "_id": {
+    "$oid": "639a73ae798da2ea1e6d184b"
+  },
+  "name": "Ottawa Remote Office"
+},{
+  "_id": {
+    "$oid": "639a73e3798da2ea1e6d184d"
+  },
+  "name": "PNBH-Bathurst"
+},{
+  "_id": {
+    "$oid": "639a7430798da2ea1e6d184f"
+  },
+  "name": "PNBH-Campbellton"
+},{
+  "_id": {
+    "$oid": "639a7467798da2ea1e6d1851"
+  },
+  "name": "PNED-Edmundston"
+},{
+  "_id": {
+    "$oid": "639a74b9798da2ea1e6d1853"
+  },
+  "name": "PNFR-Fredericton"
+},{
+  "_id": {
+    "$oid": "639a74cb798da2ea1e6d1855"
+  },
+  "name": "PNMC-Moncton"
+},{
+  "_id": {
+    "$oid": "639a74e1798da2ea1e6d1857"
+  },
+  "name": "PNMH-Miramichi"
+},{
+  "_id": {
+    "$oid": "639a750b798da2ea1e6d1859"
+  },
+  "name": "PNPK-Pokemouche"
+},{
+  "_id": {
+    "$oid": "639a7523798da2ea1e6d185b"
+  },
+  "name": "PNSJ-Saint John"
+},{
+  "_id": {
+    "$oid": "639a7538798da2ea1e6d185d"
+  },
+  "name": "PNWD-Woodstock"
+},{
+  "_id": {
+    "$oid": "639a754d798da2ea1e6d185f"
+  },
+  "name": "Working From Home"
+},{
+  "_id": {
+    "$oid": "639a7562798da2ea1e6d1861"
+  },
+  "name": "Working Remotely"
+}]
