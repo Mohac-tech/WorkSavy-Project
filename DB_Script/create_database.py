@@ -1,9 +1,3 @@
-#Export 3 collections with all fields:
-# Role
-# Depts
-# Localisation
-# Python Script
-import sys
 import pymongo
 import json
 
@@ -21,16 +15,8 @@ def createdb(colName, fiName):
     print(file_data)
     collection.insert_many(file_data)
 
-createdb("department", "depts.json")
-createdb("loca", "localisations.json")
-createdb("rol", "roles.json")
+createdb("departments", "depts.json")
+createdb("localisations", "localisations.json")
+createdb("roles", "roles.json")
 
-#if db is not None:
-#     if collection is not None:
-#        pass
-#     else: 
-#        collection = db[colName]
-#else:
-#     db = myclient[dbName]
-#     collection = db[colName]
 
