@@ -1,0 +1,71 @@
+{
+    "firstN": "Mohamed",
+    "lastN": "Cisse",
+    "email": "moha5662@gmail.com",
+    "role": "admin",
+    "sin": "1234567890",
+    "dob": "06 May 1997",
+    "phoneN": "506-888-3677",
+    "image": "link",
+    "localisation": "Moncton",
+    "dept": "Software"
+}
+
+Employee/register
+
+{
+    "firstN": "Junior",
+    "lastN": "Cisse",
+    "email": "jo5662@gmail.com",
+    "role": "user",
+    "sin": "1234567",
+    "dob": "06 May 1990",
+    "phoneN": "506-888-3688",
+    "image": "link",
+    "localisation": "Moncton",
+    "dept": "Data"
+}
+
+      const emp = Emp.findByIdAndUpdate(id, {
+         fistName: req.body.firstN,
+         lastName: req.body.lastN,
+         email: req.body.email,
+         role: r._id,
+         sin: req.body.sin,
+         dob: req.body.dob,
+         phoneNumber: req.body.phoneN,
+         image: req.body.image,
+         localisation: l._id,
+         department: d._id,
+      })
+
+{
+    "firstN": "Mohamed",
+    "lastN": "Cisse",
+    "email": "moha5662@gmail.com",
+    "password": "Enfant97",
+    "dob": "06 May 1997",
+    "localisation": "Moncton",
+    "dept": "Software"
+}
+
+
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjYzYTRmNmZlOGVjZjc3OWJjZThiOGRiNiIsImZpc3ROYW1lIjoiTW9oYW1lZCIsImxhc3ROYW1lIjoiQ2lzc2UiLCJlbWFpbCI6Im1vaGE1NjYyQGdtYWlsLmNvbSIsInBhc3N3b3JkSGFzaCI6IiQyYiQxMCR3a1VSQUNUeTV0dkpLbm5QSlV2eG4uS0hlaUVndjhoWUhLemZFZHo0QmtaVWk2SjFTV0t6TyIsImRvYiI6IjA2IE1heSAxOTk3IiwibG9jYWxpc2F0aW9uIjoiNjM5YTczOTI3OThkYTJlYTFlNmQxODQ5IiwiZGVwYXJ0bWVudCI6IjYzOWE2ZmI0YWRkNjQxMjMwMDdlNTMyYyIsIl9fdiI6MH0sImlhdCI6MTY3MTc1NTg1NiwiZXhwIjoxNzAzMzEzNDU2fQ.VK48LQNSIQjzP4lduzTcVY3nzU9C9x1HbJ6JcDXU1Lw
+
+
+git checkout -b
+
+
+{
+    "firstN": "Mohamed",
+    "lastN": "Cisse",
+    "email": "moha5662@gmail.com",
+    "image": "link",
+    "password": "Enfant97",
+    "phoneN": "506-888-3677",
+    "dob": "06 May 1997",
+    "localisation": "Moncton",
+    "dept": "Software"
+}
+  
+

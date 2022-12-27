@@ -26,11 +26,11 @@ const schemaUser = new Schema({
     department: {
           type: mongoose.Types.ObjectId,
           ref: 'Dept' 
-      }
-    //  tokens: {
-    //     type: Object,
-    //     Default: ''
-    // }
+      },
+    tokens: {
+        type: mongoose.Types.ObjectId,
+        ref: 'Token'
+    }
 })
 
 module.exports = mongoose.model('User', schemaUser);
