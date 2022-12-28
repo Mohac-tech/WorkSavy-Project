@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const  Role  = require('../models/Role')
 
-const { add, getRole, getAll } = require('../controllers/role_controllers')
+const { addRole, getRole, getAllRole } = require('../controllers/role_controllers')
 
-router.post('/add', add)
+router.post('/add', addRole)
 
 router.get('/getRole/:id', getRole)
 
-router.get('/getAll', getAll)
+router.get('/getAll', getAllRole)
 
 module.exports = router;

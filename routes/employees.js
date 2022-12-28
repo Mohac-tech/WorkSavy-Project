@@ -3,16 +3,16 @@ const router = express.Router();
 
 const auth = require('../middleware/auth')
 
-const { register, edit, information, getAll, delete_ } = require('../controllers/emp_controllers')
+const { registerEmp, editEmp, informationEmp, getAllEmp, deleteEmp } = require('../controllers/emp_controllers')
 
-router.post("/register", auth, register);
+router.post("/register", auth, registerEmp);
 
-router.patch('/edit/:id', auth, edit)
+router.patch('/edit/:id', auth, editEmp)
 
-router.get('/information/:id', auth, information)
+router.get('/information/:id', auth, informationEmp)
 
-router.get('/getAll',auth, getAll)
+router.get('/getAll',auth, getAllEmp)
 
-router.delete('/delete/:id',auth, delete_)
+router.delete('/delete/:id',auth, deleteEmp)
 
 module.exports = router

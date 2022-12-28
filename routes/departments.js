@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 
-const { add, edit, del, getAll } = require('../controllers/depts_controlles')
+const { addDepts, editDepts, deleteDepts, getAllDepts } = require('../controllers/depts_controlles')
 
-router.post('/add', add)
+router.post('/add', addDepts)
 
-router.patch('/edit/:id', edit)
+router.patch('/edit/:id', editDepts)
 
-router.delete('/delete/:id', del)
+router.delete('/delete/:id', deleteDepts)
 
-router.get('/getAll', getAll)
+router.get('/getAll', getAllDepts)
 
 module.exports = router;

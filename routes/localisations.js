@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
-const { add, del, getAll } = require('../controllers/loc_controllers')
+const { addLocalisation, deleteLocalisation, getAllLocalisation } = require('../controllers/loc_controllers')
 
-router.post('/add', add)
+router.post('/add', addLocalisation)
 
-router.delete('/delete/:id', del)
+router.delete('/delete/:id', deleteLocalisation)
 
-router.get('/getAll', getAll)
+router.get('/getAll', getAllLocalisation)
 
 module.exports = router;
