@@ -14,11 +14,6 @@ const departmentRoutes = require("./routes/departments");
 
 const api = process.env.API_URL;
 
-app.use(`${api}/employee`, employeeRoutes);
-app.use(`${api}/role`, roleRoutes);
-app.use(`${api}/localisation`, localisationRoutes);
-app.use(`${api}/users`, usersRoutes);
-
 //Middlewares
 app.use(bodyParser.json());
 app.use(express.json());
@@ -28,6 +23,11 @@ app.use(expressWinston.logger({
 }))
 
 mongoose.connect(process.env.CONNECTION_STRING, { useNewUrlParser: true }, () => console.log('Connected'));
+
+app.use(`${api}/employee`, employeeRoutes);
+app.use(`${api}/role`, roleRoutes);
+app.use(`${api}/localisation`, localisationRoutes);
+app.use(`${api}/users`, usersRoutes);
 
 app.listen(3000, () => {
     console.log('Le serveur a demarré')
