@@ -4,9 +4,16 @@ const Role = require("../models/Role");
 const Localisation = require("../models/Localisation");
 const Dept = require("../models/Departement");
 
+const {
+   registerEmpValidation,
+} = require("../utils/validationSchema");
+
 module.exports = {
   registerEmp: async (req, res) => {
-    const { error, value } = registerBodyValidation.validate(req.body);
+
+    try {
+
+    const { error, value } = registerEmpValidation.validate(req.body);
 
     if (error) {
       return res
@@ -39,10 +46,10 @@ module.exports = {
       phoneNumber: req.body.phoneN,
       image: req.body.image,
       localisation: loc._id,
-      department: dept._id,
+      department: dept._id
     });
 
-    try {
+
       const u = await user.save();
       console.log(u);
       return res
@@ -51,7 +58,7 @@ module.exports = {
     } catch (err) {
       return res
         .status(500)
-        .json({ error: true, message: "Internal servor error" });
+        .json({ error: err.message, message: "Internal servor error" });
     }
   },
 

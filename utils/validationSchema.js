@@ -8,7 +8,6 @@ const logInBodyValidation = Joi.object({
 })
 const registerEmpValidation = Joi.object({
     email: Joi.string().email().lowercase().required(),
-    password: Joi.string().min(4).max(15).required(),
     firstN: Joi.string().required(),
     lastN: Joi.string().required(),
     role: Joi.string().required(),
@@ -33,4 +32,4 @@ const registerUsersValidation = Joi.object({
     tokens: Joi.string()
 })
 
-module.exports = { logInBodyValidation, registerUsersValidation }
+module.exports = { logInBodyValidation, registerUsersValidation, registerEmpValidation }

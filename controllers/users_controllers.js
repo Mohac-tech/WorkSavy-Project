@@ -16,9 +16,9 @@ const {
 
 module.exports = {
      
-    register: async (req, res) => {
+    registerUser: async (req, res) => {
 
-        console.log(req.body)
+        try {
 
     const {error, value} = registerUsersValidation.validate(req.body);
        if(error){
@@ -47,7 +47,7 @@ module.exports = {
        localisation: loc._id,
        department: dept._id,
     });
-    try {
+    
  
        await user.save();
        return res.status(201).json({ error: false, message: "User created successfully" });
@@ -56,7 +56,7 @@ module.exports = {
     }
   },
 
-    login: async (req, res) => {
+    loginUser: async (req, res) => {
         try {
      
            const {error, value} = logInBodyValidation.validate(req.body);
@@ -125,7 +125,7 @@ module.exports = {
         })
      },
 
-     logout: async (req, res) => {
+     logoutUser: async (req, res) => {
         const autHeader = req.headers['authorization'];
         const token = autHeader && autHeader.split(' ')[1];
      
@@ -142,7 +142,7 @@ module.exports = {
      
      },
 
-     resetPassword: async (req, res) => {
+     resetPasswordUser: async (req, res) => {
         try 
         {  
            const username = req.body.username;

@@ -5,7 +5,7 @@ const auth = require('../middleware/auth')
 
 const { registerEmp, editEmp, informationEmp, getAllEmp, deleteEmp } = require('../controllers/emp_controllers')
 
-router.post("/register", auth, registerEmp);
+router.post("/register", registerEmp);
 
 router.patch('/edit/:id', auth, editEmp)
 

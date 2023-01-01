@@ -22,13 +22,9 @@ app.use(expressWinston.logger({
     statusLevels: true
 }))
 
-mongoose.connect(process.env.CONNECTION_STRING, { useNewUrlParser: true }, () => console.log('Connected'));
-
 app.use(`${api}/employee`, employeeRoutes);
 app.use(`${api}/role`, roleRoutes);
 app.use(`${api}/localisation`, localisationRoutes);
 app.use(`${api}/users`, usersRoutes);
 
-app.listen(3000, () => {
-    console.log('Le serveur a demarré')
-})
+module.exports = app
